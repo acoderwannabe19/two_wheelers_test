@@ -14,20 +14,14 @@ import java.util.Objects;
  * @author dell
  */
 
-@Entity
 public class Stock implements Serializable {
 
     private int quantite;
 
-    @Id
-    @JoinColumn(name = "PRODUIT_ID", referencedColumnName = "ID")
-    @ManyToOne(cascade = CascadeType.PERSIST)
+
     private Produit produit;
 
 
-    @Id
-    @JoinColumn(name = "MAGASIN_ID", referencedColumnName = "ID")
-    @ManyToOne(cascade = CascadeType.PERSIST)
     private Magasin magasin;
 
     public Magasin getMagasin() {
@@ -46,8 +40,6 @@ public class Stock implements Serializable {
         this.produit = produit;
         this.magasin = magasin;
     }
-
-
 
     public int getQuantite() {
         return quantite;

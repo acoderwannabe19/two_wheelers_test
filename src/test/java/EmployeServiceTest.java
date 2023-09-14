@@ -1,5 +1,6 @@
 import io.restassured.http.ContentType;
 import jakarta.ws.rs.core.MediaType;
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import sn.ept.git.dic2.entities.Employe;
 
@@ -47,7 +48,7 @@ public class EmployeServiceTest extends ServerTest{
     @Test
     public void modifEmploye200() {
         Employe employe = new Employe();
-        employe.setId(690);
+        employe.setId(6);
         employe.setNom("Niska");
 
         given()
@@ -57,7 +58,9 @@ public class EmployeServiceTest extends ServerTest{
                 .when()
                 .put("/employes/{id}")
                 .then()
-                .statusCode(200);
+                .statusCode(200)
+                .body("id", CoreMatchers.equalTo(employe.getId()));
+
 
     }
 

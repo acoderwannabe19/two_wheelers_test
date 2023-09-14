@@ -16,16 +16,12 @@ import jakarta.persistence.*;
  * @author dell
  */
 
-@Entity
-@SequenceGenerator(name = "commande_seq", sequenceName = "commande_seq", initialValue = 500)
 public class Commande implements Serializable {
 
-    @Id
-    @GeneratedValue(generator = "commande_seq")
+
     private Integer numero;
 
-    @JoinColumn(name = "CLIENT_ID", referencedColumnName = "ID", foreignKey = @ForeignKey(name = "fk_commande_client_id", foreignKeyDefinition = "FOREIGN KEY (CLIENT_ID) REFERENCES personne(ID) ON DELETE CASCADE"))
-    @ManyToOne(optional = false)
+
     private Client clientId;
 
     private short statut;
@@ -34,28 +30,21 @@ public class Commande implements Serializable {
     @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private Date dateCommande;
 
-    @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
+
     private Date dateLivraisonVoulue;
 
-    @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
+    
     private Date dateLivraison;
 
 
-    @JoinColumn(name = "MAGASIN_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
+
     private Magasin magasinId;
 
-    @JoinColumn(name = "VENDEUR_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
+
     private Employe vendeurId;
 
     public Commande() {
-        // Initialize date fields with default values
-//        this.dateCommande = new Date(2020, 4, 23);
-//        this.dateLivraisonVoulue = new Date(2020, 4, 23);
-//        this.dateLivraison = new Date(2020, 4, 23);
+
     }
 
     public Commande(Integer numero, Client clientId, short statut, Date dateCommande, Date dateLivraisonVoulue, Date dateLivraison, Magasin magasinId, Employe vendeurId) {

@@ -4,7 +4,6 @@
  */
 package sn.ept.git.dic2.entities;
 
-import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -13,14 +12,14 @@ import java.util.Collection;
  *
  * @author dell
  */
-@Entity
+
 public class Marque implements Serializable {
 
-    @Id
+
     private Integer id;
 
     private String nom;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "marqueId")
+
     private Collection<Produit> produitCollection;
 
     public Marque() {
@@ -81,7 +80,7 @@ public class Marque implements Serializable {
 
     @Override
     public String toString() {
-        return "com.example.tp_jpa_partie1.Marque[ id=" + id + " ]";
+        return "Marque: " + nom;
     }
     
 }

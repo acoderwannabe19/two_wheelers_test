@@ -1,5 +1,6 @@
 import io.restassured.http.ContentType;
 import jakarta.ws.rs.core.MediaType;
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import sn.ept.git.dic2.entities.*;
 
@@ -14,7 +15,7 @@ public class StockServiceTest extends ServerTest{
     @Test
     public void creerStock200() {
 
-        Stock stock = new Stock(3200, new Produit(), new Magasin());
+        Stock stock = new Stock(3200, new Produit(98), new Magasin(78));
 
         given()
                 .contentType(ContentType.JSON)
@@ -23,7 +24,6 @@ public class StockServiceTest extends ServerTest{
                 .put("/stocks")
                 .then()
                 .statusCode(200);
-
 
     }
 
@@ -40,7 +40,6 @@ public class StockServiceTest extends ServerTest{
                 .then()
                 .statusCode(500);
 
-
     }
 
     @Test
@@ -49,12 +48,14 @@ public class StockServiceTest extends ServerTest{
 
         given()
                 .contentType(ContentType.JSON)
+                .pathParam("magasinId", stock.getMagasin().getId())
+                .pathParam("produitId", stock.getProduit().getId())
                 .body(stock)
                 .when()
                 .put("/stocks")
                 .then()
-                .statusCode(200);
-
+                .statusCode(200)
+                .body("magasinId/produiId", CoreMatchers.equalTo(stock.getProduit().getId()), CoreMatchers.equalTo(stock.getMagasin().getId()));
 
     }
 

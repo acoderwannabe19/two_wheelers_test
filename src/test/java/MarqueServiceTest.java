@@ -15,7 +15,7 @@ public class MarqueServiceTest extends ServerTest{
     @Test
     public void creerMarque200() {
         Marque marque = new Marque();
-        marque.setId(687);
+        marque.setId(688);
         marque.setNom("Gucci");
 
         given()
@@ -28,9 +28,26 @@ public class MarqueServiceTest extends ServerTest{
     }
 
     @Test
+    public void modifMarque404() {
+        Marque marque = new Marque();
+        marque.setId(68777);
+
+        given()
+                .contentType(MediaType.APPLICATION_JSON)
+                .pathParam("id", marque.getId())
+                .body(marque)
+                .when()
+                .put("/marques/{id}")
+                .then()
+                .statusCode(404);
+
+    }
+
+
+    @Test
     public void modifMarque200() {
         Marque marque = new Marque();
-        marque.setId(687);
+        marque.setId(1);
 
         given()
                 .contentType(MediaType.APPLICATION_JSON)
@@ -41,23 +58,6 @@ public class MarqueServiceTest extends ServerTest{
                 .then()
                 .statusCode(200)
                 .body("id", CoreMatchers.equalTo(marque.getId()));
-
-    }
-
-    @Test
-    public void modifMarque404() {
-        Marque marque = new Marque();
-        marque.setId(68777);
-
-
-        given()
-                .contentType(MediaType.APPLICATION_JSON)
-                .pathParam("id", marque.getId())
-                .body(marque)
-                .when()
-                .put("/marques/{id}")
-                .then()
-                .statusCode(404);
 
     }
 
@@ -75,13 +75,13 @@ public class MarqueServiceTest extends ServerTest{
 
     @Test
     public void supprimerMarque200() {
-        given().when().delete("/marques/7")
+        given().when().delete("/marques/6")
                 .then().statusCode(200);
     }
 
     @Test
     public void supprimerMarque404() {
-        given().when().delete("/marques/35")
+        given().when().delete("/marques/35131")
                 .then().statusCode(404);
     }
 }

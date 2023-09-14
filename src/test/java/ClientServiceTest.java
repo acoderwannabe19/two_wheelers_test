@@ -1,9 +1,7 @@
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import jakarta.ws.rs.core.MediaType;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
-import sn.ept.git.dic2.entities.Client;
 import sn.ept.git.dic2.entities.Client;
 
 
@@ -28,9 +26,7 @@ public class ClientServiceTest extends ServerTest{
                 .then()
                 .statusCode(200);
 
-
     }
-
 
 
     @Test
@@ -50,7 +46,7 @@ public class ClientServiceTest extends ServerTest{
     @Test
     public void modifClient200() {
         Client client = new Client();
-        client.setId(5609);
+        client.setId(2);
 
         given()
                 .contentType(MediaType.APPLICATION_JSON)
@@ -59,7 +55,9 @@ public class ClientServiceTest extends ServerTest{
                 .when()
                 .put("/clients/{id}")
                 .then()
-                .statusCode(200);
+                .statusCode(200)
+                .body("id", CoreMatchers.equalTo(client.getId()));
+
 
     }
 

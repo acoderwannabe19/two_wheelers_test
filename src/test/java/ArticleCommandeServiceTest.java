@@ -6,6 +6,7 @@ import sn.ept.git.dic2.entities.Commande;
 import sn.ept.git.dic2.entities.Produit;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import static io.restassured.RestAssured.given;
 
@@ -17,7 +18,14 @@ public class ArticleCommandeServiceTest extends ServerTest {
 
     @Test
     public void creerProduit200() {
-        ArticleCommande articleCommande =  new ArticleCommande(new Commande(), 1, null, 34, new BigDecimal(4333.43), new BigDecimal(23.3));
+        Commande commande = new Commande(2797, null, (short) 0, null, null, null, null, null);
+        given()
+                .contentType(ContentType.JSON)
+                .body(commande)
+                .when()
+                .put("/commandes");
+
+        ArticleCommande articleCommande =  new ArticleCommande(commande, 1908, null, 34, new BigDecimal(4333.43), new BigDecimal(23.3));
 
         given()
                 .contentType(ContentType.JSON)

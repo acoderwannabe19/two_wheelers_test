@@ -7,7 +7,7 @@ import sn.ept.git.dic2.entities.Employe;
 
 import static io.restassured.RestAssured.given;
 
-public class EmployeServiceTest extends ServerTest{
+public class EmployeServiceTest extends ServerTest {
     @Test
     public void listeEmployesSucces() {
         given().when().get("/employes").then().statusCode(200);
@@ -15,7 +15,7 @@ public class EmployeServiceTest extends ServerTest{
 
     @Test
     public void creerEmploye200() {
-        Employe employe = new Employe(690, "Doe", "John",  "123456789", "johndoe@example.com", null, null, null, null, (short) 1, null, null);
+        Employe employe = new Employe(699, "Doe", "John",  "123456789", "johndoe@example.com", null, null, null, null, (short) 1, null, null);
 
 
         given()
@@ -26,6 +26,7 @@ public class EmployeServiceTest extends ServerTest{
                 .then()
                 .statusCode(200);
 
+        given().when().delete("/employes/699");
 
     }
 

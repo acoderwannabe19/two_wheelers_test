@@ -4,7 +4,6 @@
  */
 package sn.ept.git.dic2.entities;
 
-import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -13,24 +12,21 @@ import java.math.BigDecimal;
  *
  * @author dell
  */
-@Entity
+
 public class Produit implements Serializable {
 
-    @Id
+
     private Integer id;
 
     private String nom;
 
-    @JoinColumn(name = "MARQUE_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
+
     private Marque marqueId;
 
-    @JoinColumn(name = "CATEGORIE_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
+
     private Categorie categorieId;
 
     private int anneeModel;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
 
     private BigDecimal prixDepart;
 

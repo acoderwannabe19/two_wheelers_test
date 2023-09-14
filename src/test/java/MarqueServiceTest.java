@@ -25,6 +25,8 @@ public class MarqueServiceTest extends ServerTest{
                 .put("/marques")
                 .then()
                 .statusCode(200);
+
+        given().when().delete("/marques/688");
     }
 
     @Test
@@ -75,7 +77,7 @@ public class MarqueServiceTest extends ServerTest{
 
     @Test
     public void supprimerMarque200() {
-        given().when().delete("/marques/6")
+        given().when().delete("/marques/3")
                 .then().statusCode(200);
     }
 

@@ -13,16 +13,14 @@ import java.io.Serializable;
  * @author dell
  */
 
-@Entity
+
 public class Magasin implements Serializable {
 
-    @Id
     private Integer id;
 
     private String nom;
 
     private String telephone;
-
 
     private String email;
 
@@ -30,6 +28,7 @@ public class Magasin implements Serializable {
     private String adresse;
 
     private String ville;
+
     private String etat;
 
     private String codeZip;

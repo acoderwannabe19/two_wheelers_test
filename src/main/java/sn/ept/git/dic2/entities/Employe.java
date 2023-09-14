@@ -5,29 +5,19 @@
 package sn.ept.git.dic2.entities;
 
 
-import jakarta.json.bind.annotation.*;
-import jakarta.persistence.*;
-
-import java.util.Collection;
-
-
 /**
  *
  * @author dell
  */
 
 
-@Entity
 public class Employe extends Client {
 
     private short actif;
 
-    @JoinColumn(name = "MANAGER_ID", referencedColumnName = "ID", foreignKey = @ForeignKey(name = "fk_employe_manager_id", foreignKeyDefinition = "FOREIGN KEY (MANAGER_ID) REFERENCES personne(ID) ON DELETE CASCADE"))
-    @ManyToOne
+
     private Employe managerId;
 
-    @JoinColumn(name = "MAGASIN_ID", referencedColumnName = "ID", foreignKey = @ForeignKey(name = "fk_employe_magasin_id", foreignKeyDefinition = "FOREIGN KEY (MAGASIN_ID) REFERENCES magasin(ID) ON DELETE CASCADE"))
-    @ManyToOne
     private Magasin magasinId;
 
     public Employe() {

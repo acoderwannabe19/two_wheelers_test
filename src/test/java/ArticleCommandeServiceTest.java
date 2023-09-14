@@ -35,6 +35,8 @@ public class ArticleCommandeServiceTest extends ServerTest {
                 .then()
                 .statusCode(200);
 
+        given().when().delete("/articlesCommandes/1908/2797");
+        given().when().delete("commandes/2797");
     }
 
     @Test

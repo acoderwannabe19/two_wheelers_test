@@ -29,6 +29,8 @@ public class PersonneServiceTest extends ServerTest{
                 .put("/personnes")
                 .then()
                 .statusCode(200);
+
+        given().when().delete("/personnes/687");
     }
 
     @Test
@@ -50,7 +52,7 @@ public class PersonneServiceTest extends ServerTest{
     @Test
     public void modifPersonne200() {
         Personne personne = new Personne();
-        personne.setId(687);
+        personne.setId(1);
 
         given()
                 .contentType(MediaType.APPLICATION_JSON)

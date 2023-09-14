@@ -32,6 +32,7 @@ public class ProduitServiceTest extends ServerTest{
                 .then()
                 .statusCode(200);
 
+        given().when().delete("/produits/3480");
     }
 
 
@@ -52,7 +53,7 @@ public class ProduitServiceTest extends ServerTest{
 
     @Test
     public void modifProduit200() {
-        Produit produit = new Produit(3480);
+        Produit produit = new Produit(2);
         produit.setCategorieId(new Categorie(1));
 
         given()

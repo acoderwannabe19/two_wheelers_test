@@ -6,7 +6,7 @@ package sn.ept.git.dic2.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import jakarta.persistence.*;
+
 
 /**
  *
@@ -14,22 +14,16 @@ import jakarta.persistence.*;
  */
 
 
-@Entity
-@SequenceGenerator(name = "article_seq", sequenceName = "article_seq", initialValue = 500)
 public class ArticleCommande implements Serializable {
 
 
-    @Id
-    @JoinColumn(name = "NUMERO_COMMANDE", referencedColumnName = "NUMERO")
-    @ManyToOne(optional = false)
+
     private Commande numeroCommande;
 
-    @Id
-    @GeneratedValue(generator = "article_seq")
+
     private int ligne;
 
-    @JoinColumn(name = "PRODUIT_ID", referencedColumnName = "ID", foreignKey = @ForeignKey(name = "fk_articlecommande_produit_id", foreignKeyDefinition = "FOREIGN KEY (PRODUIT_ID) REFERENCES produit(ID) ON DELETE CASCADE"))
-    @ManyToOne(optional = false)
+
     private Produit produitId;
 
     private int quantite;

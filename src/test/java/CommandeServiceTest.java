@@ -31,12 +31,13 @@ public class CommandeServiceTest extends ServerTest{
                 .statusCode(200)
                 .body("numero", equalTo(commande.getNumero()));
 
+        given().when().delete("/commandes/610");
     }
 
     @Test
     public void creerCommande500() {
         Commande commande = new Commande();
-        commande.setNumero(610);
+        commande.setNumero(1);
 
         given()
                 .contentType(MediaType.APPLICATION_JSON)
@@ -54,7 +55,7 @@ public class CommandeServiceTest extends ServerTest{
         Client newClient = new Client();
         Employe newEmploye = new Employe();
 
-        commande.setNumero(610);
+        commande.setNumero(1);
         commande.setClientId(newClient);
         commande.setVendeurId(newEmploye);
         commande.setStatut((short) 1);

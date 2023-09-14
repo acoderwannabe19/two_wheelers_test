@@ -26,6 +26,7 @@ public class ClientServiceTest extends ServerTest{
                 .then()
                 .statusCode(200);
 
+        given().when().delete("/clients/5609");
     }
 
 

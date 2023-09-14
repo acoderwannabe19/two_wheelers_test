@@ -1,16 +1,11 @@
 package sn.ept.git.dic2.entities;
 
-import jakarta.persistence.*;
-import jakarta.xml.bind.annotation.XmlRootElement;
 
 import java.io.Serializable;
 
-@XmlRootElement(name = "personne")
-@Inheritance(strategy = InheritanceType.JOINED)
-@Entity
+
 public class Personne implements Serializable {
 
-    @Id
     private Integer id;
 
     private String prenom;

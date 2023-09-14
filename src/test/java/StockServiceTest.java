@@ -1,6 +1,5 @@
 import io.restassured.http.ContentType;
 import jakarta.ws.rs.core.MediaType;
-import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import sn.ept.git.dic2.entities.*;
 
@@ -14,8 +13,21 @@ public class StockServiceTest extends ServerTest{
 
     @Test
     public void creerStock200() {
+        Produit produit = new Produit(9866);
+        given()
+                .contentType(ContentType.JSON)
+                .body(produit)
+                .when()
+                .put("/produits");
 
-        Stock stock = new Stock(3200, new Produit(98), new Magasin(78));
+        Magasin magasin = new Magasin(997);
+        given()
+                .contentType(ContentType.JSON)
+                .body(magasin)
+                .when()
+                .put("/magasins");
+
+        Stock stock = new Stock(3209, produit, magasin);
 
         given()
                 .contentType(ContentType.JSON)
@@ -24,6 +36,11 @@ public class StockServiceTest extends ServerTest{
                 .put("/stocks")
                 .then()
                 .statusCode(200);
+
+        given().when().delete("/stocks/997/9866");
+        given().when().delete("/magasins/997");
+        given().when().delete("/produits/9866");
+
 
     }
 
@@ -52,11 +69,9 @@ public class StockServiceTest extends ServerTest{
                 .pathParam("produitId", stock.getProduit().getId())
                 .body(stock)
                 .when()
-                .put("/stocks")
+                .put("/stocks/{magasinId}/{produitId}")
                 .then()
-                .statusCode(200)
-                .body("magasinId/produiId", CoreMatchers.equalTo(stock.getProduit().getId()), CoreMatchers.equalTo(stock.getMagasin().getId()));
-
+                .statusCode(200);
     }
 
     @Test
@@ -69,7 +84,7 @@ public class StockServiceTest extends ServerTest{
                 .pathParam("produitId", stock.getProduit().getId())
                 .body(stock)
                 .when()
-                .put("/commandes/{magasinId}/{produitId}")
+                .put("/stocks/{magasinId}/{produitId}")
                 .then()
                 .statusCode(404);
     }

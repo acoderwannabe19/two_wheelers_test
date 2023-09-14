@@ -25,12 +25,14 @@ public class CategorieServiceTest extends ServerTest{
                 .put("/categories")
                 .then()
                 .statusCode(200);
+
+        given().when().delete("/categories/687");
     }
 
     @Test
     public void modifCategorie200() {
         Categorie categorie = new Categorie();
-        categorie.setId(687);
+        categorie.setId(2);
 
         given()
                 .contentType(MediaType.APPLICATION_JSON)

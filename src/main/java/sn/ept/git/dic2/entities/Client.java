@@ -4,7 +4,6 @@
  */
 package sn.ept.git.dic2.entities;
 
-import jakarta.persistence.*;
 
 import java.util.Objects;
 
@@ -14,8 +13,7 @@ import java.util.Objects;
  * @author dell
  */
 
-@Inheritance(strategy = InheritanceType.JOINED)
-@Entity
+
 public class Client extends Personne {
     private String adresse;
 

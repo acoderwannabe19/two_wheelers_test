@@ -4,7 +4,6 @@
  */
 package sn.ept.git.dic2.entities;
 
-import jakarta.persistence.*;
 
 import java.io.Serializable;
 
@@ -12,10 +11,9 @@ import java.io.Serializable;
  *
  * @author dell
  */
-@Entity
+
 public class Categorie implements Serializable {
 
-    @Id
     private Integer id;
 
     private String nom;
